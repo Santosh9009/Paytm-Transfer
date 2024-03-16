@@ -42,7 +42,7 @@ router.post('/signup',async(req,res)=>{
   })
   const userid = user._id;
   
-  const token = jwt.sign({userid},JWT_SECRET)
+  const token = jwt.sign({userid: userid},JWT_SECRET)
   
   res.status(200).json({
     message: "user created successfully",
@@ -52,7 +52,7 @@ router.post('/signup',async(req,res)=>{
 })
 
 const singinbody = z.object({
-  username: z.string.email(),
+  username: z.string().email(),
   password: z.string()
 })
 
@@ -91,7 +91,7 @@ const updatebody = z.object({
 })
 
 // update info
-router.put('/',authmiddleware,async(req,res)=>{
+router.put('/',authmiddleware, async(req,res)=>{
   const {success} = updatebody.safeParse(req.body);
   if(!success){
     return res.status(411).json({
@@ -105,6 +105,30 @@ router.put('/',authmiddleware,async(req,res)=>{
     message : 'Updated successfully'
   })
 
+})
+
+
+// filter user
+router.get('/bulk',async(req,res)=>{
+  const filter = req.query.filter || "";
+
+  const users = await User.find({
+    $or:[{firstname:{"$regex": filter}},
+          {lastname:{"$regex": filter }}
+        ]
+  })
+
+  res.status(200).json({
+    user: users.map((user)=>{
+      return{
+        username : user.username,
+        firstname : user.firstname,
+        lastname : user.lastname,
+        password : user.password,
+        id: user._id
+      }
+    })
+  })
 })
 
 module.exports = router;
