@@ -14,7 +14,7 @@ const Signup = () => {
       <Inputbox label={'Last Name'} placeholder={'Doe'}/>
       <Inputbox label={'Email'} placeholder={'jogndoe@gmail.com'}/>
       <Inputbox label={'Password'} placeholder={'Jogn@123'}/>
-      <Button title={'Sign up'}/>
+      <Button label={'Sign up'}/>
       <Warning text1={'Already have an account?'} text2={'Sign in'} to={'/signin'} />
         </div>
       </div>

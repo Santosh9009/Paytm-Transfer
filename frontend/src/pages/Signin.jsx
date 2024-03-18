@@ -11,7 +11,7 @@ const Signin = () => {
       <Subheading Subheading={'Enter your credentials to access your account'} />
       <Inputbox label={'Email'} placeholder={'jogndoe@gmail.com'}/>
       <Inputbox label={'Password'} placeholder={''}/>
-      <Button title={'Sign in'}/>
+      <Button label={'Sign in'}/>
       <Warning text1={`Don't have an account?`} text2={'Sign Up'} to={'/signup'} />
         </div>
       </div>
