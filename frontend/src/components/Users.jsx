@@ -7,7 +7,7 @@ const Users = () => {
 
   return (
     <div className=" w-full flex flex-col gap-8">
-      <h1 className="font-semibold">Users</h1>
+      <h1 className="font-semibold text-xl">Users</h1>
       <div>
         <input
           type="text"
@@ -26,7 +26,7 @@ export default Users;
 
 
 function User({user}){
-  
+
   return <div className="flex justify-between">
   <div className="flex">
       <div className="rounded-full h-12 w-12 bg-slate-200 flex justify-center mt-1 mr-2">
