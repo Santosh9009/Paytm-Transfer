@@ -28,14 +28,15 @@ const Signup = () => {
           username, firstname,lastname,password
         })
         localStorage.setItem('token',response.data.token)
+        if(response.data.token){
+          navigate('/dashboard?name='+firstname)
+        }
         setFirstname('')
         setLastname('')
         setUsername('')
         setPassword('')
         
-        if(response.data.token){
-          navigate('/dashboard')
-        }}
+      }
       }/>
       <Warning text1={'Already have an account?'} text2={'Sign in'} to={'/signin'} />
         </div>
