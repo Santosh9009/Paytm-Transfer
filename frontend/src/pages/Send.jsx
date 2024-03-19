@@ -1,11 +1,10 @@
 import Header from "../components/Header";
 import Inputbox from "../components/Inputbox";
-import Subheading from "../components/Subheading";
 
 const Send = () => {
   return (
     <div className="w-full h-screen flex justify-center items-center">
-      <div className="flex flex-col gap-20 w-[30%] text-center shadow-md p-5 rounded-lg">
+      <div className="flex flex-col gap-20 w-96 text-center shadow-md p-3 rounded-lg">
         <Header heading={"Send Money"} />
         <div className="flex flex-col gap-8 items-start p-5">
           <div className="flex items-center gap-5">
