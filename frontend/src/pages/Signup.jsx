@@ -29,7 +29,7 @@ const Signup = () => {
         })
         localStorage.setItem('token',response.data.token)
         if(response.data.token){
-          navigate('/dashboard?name='+firstname)
+          navigate('/dashboard?username='+username)
         }
         setFirstname('')
         setLastname('')

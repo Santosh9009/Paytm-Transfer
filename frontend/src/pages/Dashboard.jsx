@@ -7,7 +7,7 @@ import { useSearchParams } from 'react-router-dom';
 
 const Dashboard = () => {
   const [searchParams] = useSearchParams();
-  const name = searchParams.get('name');
+  const name = searchParams.get('username');
   const [amount, setAmount] = useState(0);
 
   useEffect(() => {
