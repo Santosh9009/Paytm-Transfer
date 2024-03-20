@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState , useEffect} from "react"
 import Button from "../components/Button"
 import Header from "../components/Header"
 import Inputbox from "../components/Inputbox"
@@ -10,6 +10,19 @@ const Signin = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const navigate = useNavigate();
+
+  useEffect(() => {
+
+    axios.get('http://localhost:3000/api/v1/me/',{
+      headers:{
+        'Authorization':'Bearer ' + localStorage.getItem('token')
+      }
+    }).then((res)=>{
+      if(res.data.name){
+        navigate('/dashboard?name='+res.data.name)
+      }
+    })
+}, [])
 
 
   return (
@@ -27,7 +40,7 @@ const Signin = () => {
         localStorage.setItem('token',res.data.token)
         console.log(res.data.token)
         if(res.data.token){
-          navigate('/dashboard?username='+username)
+          navigate('/dashboard?name='+username)
         }
         setUsername('')
         setPassword('')

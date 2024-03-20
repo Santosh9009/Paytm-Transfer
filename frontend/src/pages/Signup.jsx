@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState , useEffect } from "react"
 import Button from "../components/Button"
 import Header from "../components/Header"
 import Inputbox from "../components/Inputbox"
@@ -13,6 +13,19 @@ const Signup = () => {
   const [lastname, setLastname] = useState('')
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+
+  useEffect(() => {
+
+    axios.get('http://localhost:3000/api/v1/me/',{
+      headers:{
+        'Authorization':'Bearer ' + localStorage.getItem('token')
+      }
+    }).then((res)=>{
+      if(res.data.name){
+        navigate('/dashboard?name='+res.data.name)
+      }
+    })
+}, [])
 
   return (
     <div className="w-full h-screen flex justify-center items-center">

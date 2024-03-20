@@ -3,11 +3,12 @@ import Appbar from "../components/Appbar"
 import Balance from "../components/Balance"
 import Users from "../components/Users"
 import axios from "axios"
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 const Dashboard = () => {
+  const navigate = useNavigate(); 
   const [searchParams] = useSearchParams();
-  const name = searchParams.get('username');
+  const name = searchParams.get('name');
   const [amount, setAmount] = useState(0);
 
   useEffect(() => {
@@ -18,6 +19,19 @@ const Dashboard = () => {
       setAmount(res.data.balance.toFixed(2) )
     })
   }, [])
+
+  useEffect(() => {
+
+    axios.get('http://localhost:3000/api/v1/me/',{
+      headers:{
+        'Authorization':'Bearer ' + localStorage.getItem('token')
+      }
+    }).then((res)=>{
+      if(!res.data.name){
+        navigate('/home')
+      }
+    })
+}, [])
   
 
   return (
