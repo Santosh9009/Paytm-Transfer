@@ -73,7 +73,7 @@ router.post('/signin',async(req,res)=>{
     })
   }
 
-  const existinguser =await User.findOne({username: req.body.username})
+  const existinguser = await User.findOne({username: req.body.username ,password:req.body.password})
   if(existinguser){
    const token = jwt.sign({userid: existinguser._id},JWT_SECRET);
 
